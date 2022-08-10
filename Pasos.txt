@@ -1,0 +1,25 @@
+# Instalación de paquetes
+npm i --save-dev @types/node nodemon ts-node typescript
+
+Ejecución typescript "desde fuera"
+npx tsc (typescrip compiler) --init --rootDir (en qué capeta guardaremos el build) src
+--esModuleInterop
+--resolveJsonModule
+--lib es6
+--module commonjs
+--allowjs (que conviva JS con TS)
+--noImplicitAny true (el tipado any no se podrá usar, para forzar el correcto tipado y evitar futuros errores)
+
+creamos un archivo de config nodemon
+dentro, le indicamos un pequeño script que incluya ts-node y en el package.json otro script de start con nodemon, simplemente.
+
+Una vez transpilado a JS tendremos el equivalente en js tanto en build (carpeta de salida del proyecto)
+
+Typescript está pensado para desarrollar javascript "con ayudas"
+
+npm i --save-dev rimraf nos va a permitir generar webapps más potente
+
+1.cogemos un ts
+2. hacemos build de la solución
+3. transpilación del codigo con tsc
+4. node se encarga de ejecutar el archivo JS resultante
