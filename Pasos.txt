@@ -23,3 +23,11 @@ npm i --save-dev rimraf nos va a permitir generar webapps más potente
 2. hacemos build de la solución
 3. transpilación del codigo con tsc
 4. node se encarga de ejecutar el archivo JS resultante
+
+
+TIPADOS
+debil (inferido) - Javascript (implícito). Es recomendable indicar el tipo de variable
+var nombreVariable: tipo = valor
+A partir del momento que nosotros declaramos el tipo de la variable => TIPADO FUERTE
+tipo any: está diciendo especificamente que esa variable puede ser cualquier cosa
+con el tipo any, la variable PUEDE CAMBIAR DE TIPO
