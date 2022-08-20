@@ -152,3 +152,51 @@ do {
     
 } while (condition);
 
+//Funciones 
+
+function saludar() {
+    let nombre: string = 'Erica'
+    console.log(`Hola, ${nombre}`)
+}
+
+function saludarPersona(nombre: string = 'Pepe') {
+    console.log(`Hola, ${nombre}`)
+}
+
+function saludarOpcional(nombre?: string) {
+    if(nombre) {
+        console.log(`Hola, ${nombre}`)
+    } else {
+        console.log(`¡Hola!`)
+
+    }
+}
+
+saludarPersona() //Hola, Pepe
+saludarPersona('Erica') //Hola, Erica
+
+function ejemploVariosTipos(a: string | number) {
+    if(typeof(a) === 'string') {
+        console.log("A es un string")
+    } else if(typeof(a) === 'number') {
+        console.log("A es un number")
+    } else {
+        console.log("A no es un string ni un number")
+        throw Error('A no es string ni number')
+
+    }
+}
+//funciones anonimas
+let ejemploArrow = () => {}
+
+function ejemploReturn(nombre:string, apellidos:string): string {
+    return `${nombre} ${apellidos}`
+}
+const nombreCompleto = ejemploReturn('Erica', 'Arenas')
+console.log(nombreCompleto) //ERica Arenas
+console.log(ejemploReturn('Erica', 'Arenas')) //ERica Arenas
+//Sobrecarga de funciones
+
+//Funciones asincronas
+
+//funciones generadores
