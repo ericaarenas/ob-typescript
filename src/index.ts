@@ -1,4 +1,4 @@
-import { Console } from "console"
+import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from 'cookies-utils'
 
 console.log('Hola Typescript')
 console.log('Hola Erica')
@@ -145,14 +145,14 @@ listaTareasNuevas.forEach((tarea: Tarea, index: number) => {
         
 //     }
 // }
-//while
-while (condition) {
+// //while
+// while (condition) {
     
-}
-//do while
-do {
+// }
+// //do while
+// do {
     
-} while (condition);
+// } while (condition);
 
 /********************************************** */
 /******************FUNCIONES******************* */
@@ -275,8 +275,78 @@ console.log(generatorSaga.next().value) //2 (lo ha hecho el worker)
 console.log(generatorSaga.next().value) //3 (lo ha hecho el worker)
 console.log(generatorSaga.next().value) //4 (lo ha hecho el watcher)
 
+//Sobrecarga de funciones
+//una misma funcion que haga diferentes operaciones
+function mostrarError(error:string | number):void {
+    console.log('Ha habido un error', error)    
+}
+
+/********************************************** */
+/***********PERSISTENCIA DE DATOS************** */
+/********************************************** */
+// LocalStorage: almacena los datos en el navegador. Son persistidos. no se eliminan automáticamente
+//SessionStorage: la diferencia radica en la sesión del navegador. Los datos se persisten en la sesión de navegador
+//Cookies: tienen una fecha de caducidad y un ámbito de URL
+
+//localStorage y sessionStorage
+
+// function guardarEnLocalStorage():void {
+//     localStorage.set('nombre', 'Erica')
+    
+// }
+// function leerLocalStorage():void {
+//     let nombre = localStorage.get('nombre')
+    
+// }
+// npm i cookies-utils --save
+
+//Cookies
+const cookieOptions = {
+    name: "usuario", // string,
+    value: "Erica", // string,
+    maxAge: 10 * 60, // optional number (value in seconds),
+    expires: new Date(2099, 10, 1), // optional Date,
+    path: "/", // optional string,
+   };
+  setCookie(cookieOptions);
+//leer cookie
+let cookie = getCookieValue('usuario')
+  //eliminar
+  deleteCookie('usuario')
+  //eliminar todas las cookies
+  deleteAllCookies()
 
 
 /********************************************** */
 /******************EVENTOS********************* */
+/********************************************** */
+// clase temporizador
+
+class Temporizador {
+    public terminar?: (tiempo:number) => void
+    public empezar(): void {
+        setTimeout(() => {
+            //Comprobamos que exista la función terminar como callback
+            if(!this.terminar) return
+            //cuando haya pasado el tiempo, se ejecutará la función terminar
+            this.terminar(Date.now())
+        }, 10000)
+    }
+
+}
+
+const miTemporizador: Temporizador = new Temporizador()
+//Definir la función del callback a ejecutar cuando termine el tiempo
+
+miTemporizador.terminar = (tiempo:number) => {console.log('Evento terminado: ',tiempo)}
+
+//lanzamos el temporaizador
+miTemporizador.empezar() //se inicia el timeout y cuando termine se ejecuta la función terminar
+setInterval(() => console.log('Tic'), 1000) //imprime tic cada segundo
+
+//para eliminar la funcion terminar del stack de ejecución
+delete miTemporizador.terminar
+
+/********************************************** */
+/**************CLASES Y OBJETOS**************** */
 /********************************************** */
