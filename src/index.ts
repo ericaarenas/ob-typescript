@@ -1,3 +1,5 @@
+import { Console } from "console"
+
 console.log('Hola Typescript')
 console.log('Hola Erica')
 
@@ -152,7 +154,9 @@ do {
     
 } while (condition);
 
-//Funciones 
+/********************************************** */
+/******************FUNCIONES******************* */
+/********************************************** */
 
 function saludar() {
     let nombre: string = 'Erica'
@@ -195,8 +199,84 @@ function ejemploReturn(nombre:string, apellidos:string): string {
 const nombreCompleto = ejemploReturn('Erica', 'Arenas')
 console.log(nombreCompleto) //ERica Arenas
 console.log(ejemploReturn('Erica', 'Arenas')) //ERica Arenas
-//Sobrecarga de funciones
+
+function ejemploMultipleParams(...nombres:string[]) {
+    nombres.forEach(nombre => {
+        console.log(nombre)
+    })
+    
+}
+ejemploMultipleParams('Erica')
+ejemploMultipleParams('Erica', 'Pepe', 'Rafa')
+
+const lista = ['Maria', 'Marta', 'Luis']
+
+function ejemploParamLista(nombres:string[]):void {
+    nombres.forEach(nombre => {
+        console.log(nombre)
+    })
+    
+}
+
+ejemploParamLista(lista)
+ejemploMultipleParams(...lista)
 
 //Funciones asincronas
+async function ejemploAsync(): Promise<string> {
+    await console.log('Tarea a completar antes de seguir con la secuencia de instrucciones')
+    console.log('Tarea completada')
+    return 'Completado'
+}
+
+ejemploAsync().then((respuesta) => {
+    console.log('Respuesta', respuesta)
+}).catch((error) => {
+    console.log('Ha ocurrido un error', error)
+}).finally(() => 'Todo ha terminado')
 
 //funciones generadores
+function* ejemploGenerator() {
+    // yield para emitir valores
+    let index = 0
+    while (index < 5) {
+        //emitimos un valor incrementado
+        yield index++
+    }
+
+}
+//guardamos la funcion generadora en una variable
+let generadora = ejemploGenerator()
+//accedemos a los valores emitidos
+console.log(generadora.next().value) //0
+console.log(generadora.next().value) //1
+console.log(generadora.next().value) //2
+console.log(generadora.next().value) //3
+
+//watcher
+function* watcher(valor: number) {
+    //llama al worker
+    yield valor //emitimos el valor inicial
+    yield* worker(valor) //llamamos a las emisiones del worker para que emita otros valores
+    yield valor + 4 //emitimos el valor final + 4
+    
+}
+//Worker
+function* worker(valor: number) {
+    yield valor +1 
+    yield valor +2 
+    yield valor +3 //cada vez que nosotros llamemos al .next() la primera vez le sumará 1, la segunda 2, la teercera 3
+}
+
+let generatorSaga = watcher(0)
+
+console.log(generatorSaga.next().value) //0 (lo ha hecho el watcher)
+console.log(generatorSaga.next().value) //1 (lo ha hecho el worker)
+console.log(generatorSaga.next().value) //2 (lo ha hecho el worker)
+console.log(generatorSaga.next().value) //3 (lo ha hecho el worker)
+console.log(generatorSaga.next().value) //4 (lo ha hecho el watcher)
+
+
+
+/********************************************** */
+/******************EVENTOS********************* */
+/********************************************** */
