@@ -1,8 +1,10 @@
 import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from 'cookies-utils'
+import { ITarea, Nivel } from './interfaces/ITarea'
 import { LISTA_CURSOS } from './mocks/cursos.mock'
 import {Curso} from './models/curso'
 import {Estudiante} from './models/Estudiante'
 import { Empleado, Jefe } from './models/Persona'
+import { Programar } from './models/Programar'
 
 
 console.log('Hola Typescript')
@@ -393,3 +395,67 @@ jefe.empleados.push(empleado1,empleado2,empleado3)
 jefe.empleados.forEach(empleado => {
     empleado.saludar()
 });
+
+empleado1.saludar() //especificado en Empleado
+jefe.saludar() //herencia de Persona
+
+/********************************************** */
+/****************INTERFACES******************** */
+/********************************************** */
+
+let programar: ITarea = {
+    titulo: 'Programar en TS',
+    descripcion: 'Practicar con Katas para aprender a desarrollar en TS',
+    completada: false,
+    urgencia: Nivel.Urgente,
+    resumen: function (): string {
+        return `${this.titulo} - ${this.completada}`
+    }
+}
+
+console.log(programar.resumen())
+//tarea de programación (implementa ITarea)
+let programarTs = new Programar('TS', 'Tarea de progamar en TS', false, Nivel.Bloqueante)
+console.log(programarTs.resumen())
+
+
+//decoradores experimentales @Override, etc
+//añaden info extra a un método. 
+// - Clases
+// - Parámetros
+// - Métodos
+// - Propiedades
+
+function Override(label:string) {
+    return function (target:any, key:string) {
+        Object.defineProperty(target, key, {
+            configurable: false,
+            get: () => label
+        }) 
+    } 
+}
+
+class PruebaDecorador {
+    @Override('prueba') //llamar a la funcion override
+    nombre: string = 'value'
+}
+
+let prueba = new PruebaDecorador()
+console.log(prueba.nombre) //prueba siempre va a ser devuelto a través de get()
+
+//Otra funcion para usarla como decorador
+function soloLectura(target:any, key:string) {
+    Object.defineProperty(target, key, {
+        writable: false
+    })
+    
+}
+
+class PruebaSoloLectura {
+    @soloLectura
+    nombre: string = 'Erica'
+}
+
+let pruebaLectura = new PruebaSoloLectura()
+pruebaLectura.nombre = 'Martin'
+console.log(pruebaLectura.nombre) //Erica

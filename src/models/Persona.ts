@@ -22,6 +22,11 @@ export class Empleado extends Persona {
         super(nombre, apellidos, edad)
         this.sueldo = sueldo
     }
+
+    saludar():void {
+        super.saludar()
+        console.log(`Mi sueldo es de ${this.sueldo}`)
+    }
 }
 
 export class Jefe extends Persona {
