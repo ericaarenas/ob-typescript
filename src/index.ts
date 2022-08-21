@@ -459,3 +459,16 @@ class PruebaSoloLectura {
 let pruebaLectura = new PruebaSoloLectura()
 pruebaLectura.nombre = 'Martin'
 console.log(pruebaLectura.nombre) //Erica
+
+
+///decorador para parámetros de un método
+function mostrarPosicion(target:any, propertyKey:string, parameterIndex: number) {
+    console.log('Posicion', parameterIndex)
+}
+
+class PruebaMetodoDecorador {
+    prueba(a: string, @mostrarPosicion b:boolean) {
+        console.log(b)
+    }
+}
+let pruebaDecoradorEnParam = new PruebaMetodoDecorador().prueba('Hola', false)
