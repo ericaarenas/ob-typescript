@@ -17,7 +17,7 @@ export class Estudiante {
     get horasEstudiadas () {
         let horasEstudiadas = 0
         this.cursos.forEach((curso:Curso) => {
-            horasEstudiadas += this.cursos.horas
+            horasEstudiadas += curso.horas
         })
         return horasEstudiadas
     }

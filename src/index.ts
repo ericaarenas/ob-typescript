@@ -2,6 +2,7 @@ import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from 'cooki
 import { LISTA_CURSOS } from './mocks/cursos.mock'
 import {Curso} from './models/curso'
 import {Estudiante} from './models/Estudiante'
+import { Empleado, Jefe } from './models/Persona'
 
 
 console.log('Hola Typescript')
@@ -374,3 +375,21 @@ erica.cursos.forEach(curso => {
 // instanceof(erica)
 erica.setID_estudiante('890')
 
+let fechaNacimiento = new Date(1984,6,18)
+if(fechaNacimiento instanceof Date) {
+    console.log("Es una instancia de Date")
+}
+
+/********************************************** */
+/**********HERENCIA Y POLIMORFISMO************* */
+/********************************************** */
+let empleado1 = new Empleado('Erica', 'Arenas', 30, 2000)
+let empleado2 = new Empleado('Maria', 'Perez', 35, 1500)
+let empleado3 = new Empleado('Martin', 'San Jose', 45, 1800)
+empleado1.saludar()
+
+let jefe = new Jefe('Pablo','Garcia',50)
+jefe.empleados.push(empleado1,empleado2,empleado3)
+jefe.empleados.forEach(empleado => {
+    empleado.saludar()
+});
