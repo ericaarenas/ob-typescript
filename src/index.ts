@@ -1,4 +1,8 @@
 import { deleteAllCookies, deleteCookie, getCookieValue, setCookie } from 'cookies-utils'
+import { LISTA_CURSOS } from './mocks/cursos.mock'
+import {Curso} from './models/curso'
+import {Estudiante} from './models/Estudiante'
+
 
 console.log('Hola Typescript')
 console.log('Hola Erica')
@@ -350,3 +354,23 @@ delete miTemporizador.terminar
 /********************************************** */
 /**************CLASES Y OBJETOS**************** */
 /********************************************** */
+
+// const cursoTS: Curso = new Curso('TypeScript', 15)
+// const cursoJS: Curso = new Curso('JavaScript', 20)
+
+// const listaCurso: Curso[] = []
+// listaCurso.push(cursoJS, cursoTS)
+//usamos el MOCK
+
+const listaCurso: Curso[] = LISTA_CURSOS
+const erica: Estudiante = new Estudiante('Erica', listaCurso, 'Arenas')
+
+console.log(`${erica.nombre} estudia:`)
+erica.cursos.forEach(curso => {
+    console.log(`- ${curso.nombre} (${curso.horas} horas)`)
+})
+
+//Saber la instancia de un objeto/variable
+// instanceof(erica)
+erica.setID_estudiante('890')
+
