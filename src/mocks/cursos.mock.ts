@@ -1,4 +1,4 @@
-import Curso from "../models/curso";
+import {Curso} from "../models/Curso";
 
 export const LISTA_CURSOS: Curso[] = [
 

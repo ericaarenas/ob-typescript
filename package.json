@@ -6,6 +6,9 @@
   "scripts": {
     "tsNode": "cd src && ts-node index.ts",
     "start": "nodemon",
+    "linting": "eslint",
+    "linting:fix": "eslint --fix",
+    "document": "typedoc --out docs src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "transpilation": "tsc",
     "build:prod": "rimraf ./build && tsc",
@@ -29,9 +32,16 @@
   "homepage": "https://github.com/ericaarenas/ob-typescript#readme",
   "devDependencies": {
     "@types/node": "^18.6.5",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "eslint": "^8.22.0",
+    "eslint-config-standard-with-typescript": "^22.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.5",
+    "eslint-plugin-promise": "^6.0.0",
     "nodemon": "^2.0.19",
     "rimraf": "^3.0.2",
     "ts-node": "^10.9.1",
+    "typedoc": "^0.23.10",
     "typescript": "^4.7.4"
   },
   "dependencies": {

@@ -1,4 +1,4 @@
-import { Curso } from "./curso"
+import { Curso } from "./Curso"
 
 export class Estudiante {
     //propiedades de clase
